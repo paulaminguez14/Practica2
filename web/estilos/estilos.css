@@ -1,0 +1,499 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Switzer', sans-serif;
+}
+
+body {
+    background-image: url("../imagenes/fondoInicio.jpg");
+    /* que la imagen tenga el ancho de la ventana */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Estilo para el header */
+
+.cabeceraInicio {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    color: whitesmoke;
+}
+
+.cabeceraInicio h1 {
+    font-family: "Newsreader", serif;
+}
+
+.cabeceraInicio ul {
+    display: flex;
+    list-style: none;
+}
+
+.cabeceraInicio ul li {
+    margin: 0px 20px;
+}
+
+.cabeceraInicio a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.derechaCabecera {
+    display: flex;
+    align-items: center;
+}
+
+.derechaCabecera input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    width: 180px;
+}
+
+.derechaCabecera a {
+    background-color: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Estilo para el main principal */
+
+.tituloInicio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.tituloInicio h1, .tituloInicio h3 {
+    text-align: center;
+    font-size: 80px;
+    font-weight: lighter;
+    color: whitesmoke;
+    text-align: center;
+    font-family: "Newsreader", serif;
+}
+
+.tituloInicio h3 {
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+.segundaParteInicio {
+    background-color: whitesmoke;
+    height: 160vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px;
+}
+
+.segundaParteInicio h1 {
+    font-size: 20px;
+    font-weight: lighter;
+    font-family: "Newsreader", serif;
+    /* texto en uppercase */
+    text-transform: uppercase;
+}
+
+.segundaParteInicio h3 {
+    font-size: 60px;
+    margin-top: 20px;
+    text-align: center;
+    font-family: "Newsreader", serif;
+    font-weight: lighter;
+}
+
+.segundaParteInicio button {
+    border: 1px solid black;
+    background-color: whitesmoke;
+    padding: 20px 80px;
+    font-size: 15px;
+    margin-top: 40px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+
+.autores {
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+    margin-top: 70px;
+}
+.autores h4 {
+    font-size: 15px;
+    font-weight: lighter;
+    font-family: "Newsreader", serif;
+}
+
+.imagenInicio {
+    width: 400px;
+    margin-top: 100px;
+    border-radius: 200px 200px 10px 10px;
+    -webkit-border-radius: 200px 200px 10px 10px;
+    -moz-border-radius: 200px 200px 10px 10px;
+    -ms-border-radius: 200px 200px 10px 10px;
+    -o-border-radius: 200px 200px 10px 10px;
+}
+
+.segundaParteInicio p {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 25px;
+    font-family: "Newsreader", serif;
+    width: 50%;
+}
+
+.terceraParteInicio {
+    background-color: rgb(55, 86, 111);
+    margin-top: -30px;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(to bottom, white 0%, rgb(55, 86, 111) 5%);
+    background-image: -webkit-linear-gradient(to bottom, white 0%, rgb(55, 86, 111) 5%);
+    background-image: -moz-linear-gradient(to bottom, white 0%, rgb(55, 86, 111) 5%);
+    background-image: -o-linear-gradient(to bottom, white 0%, rgb(55, 86, 111) 5%);
+    padding-right: 20px;
+}
+
+.destinosInicio {
+    width: 50%;
+    padding: 50px;
+    color: whitesmoke;
+}
+
+.destinosInicio p, .destinosInicio h1, .destinosInicio h3 {
+    margin-bottom: 20px;
+    font-family: "Newsreader", serif;
+}
+
+.destinosInicio h1 {
+    font-size: 50px;
+    font-weight: lighter;
+}
+
+.destinosInicio button {
+    border: 1px solid whitesmoke;
+    color: whitesmoke;
+    background-color: rgb(55, 86, 111);
+    padding: 20px 80px;
+    font-size: 15px;
+    margin-top: 40px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+
+.europaInicio h1, .americaInicio h1, .asiaInicio h1, .africaInicio h1, .oceaniaInicio h1 {
+    font-size: 50px;
+    font-weight: lighter;
+    font-family: "Newsreader", serif;
+    margin-bottom: 20px;
+}
+
+.europaInicio h3, .americaInicio h3, .asiaInicio h3, .africaInicio h3, .oceaniaInicio h3 {
+    font-weight: lighter;
+    font-family: "Newsreader", serif;
+    margin-bottom: 20px;
+}
+
+.europaInicio button, .americaInicio button, .asiaInicio button, .africaInicio button, .oceaniaInicio button {
+    border: 1px solid black;
+    color: whitesmoke;
+    background-color: rgb(55, 86, 111);
+    padding: 10px 40px;
+    font-size: 15px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+
+.europaInicio {
+    background-image: url("../imagenes/europa.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 30%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 20px 0px 0px 20px;
+    -webkit-border-radius: 20px 0px 0px 20px;
+    -moz-border-radius: 20px 0px 0px 20px;
+    -ms-border-radius: 20px 0px 0px 20px;
+    -o-border-radius: 20px 0px 0px 20px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.193);
+}
+
+.asiaInicio {
+    background-image: url("../imagenes/asia.png");
+    background-size: cover;
+    background-position: center;
+    width: 30%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.193);
+}
+
+.africaInicio {
+    background-image: url("../imagenes/africa.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 30%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.193);
+}
+
+.americaInicio {
+    background-image: url("../imagenes/america.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 30%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.193);
+}
+
+.oceaniaInicio {
+    background-image: url("../imagenes/oceania.png");
+    background-size: cover;
+    background-position: center;
+    width: 30%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 0px 20px 20px 0px;
+    -webkit-border-radius: 0px 20px 20px 0px;
+    -moz-border-radius: 0px 20px 20px 0px;
+    -ms-border-radius: 0px 20px 20px 0px;
+    -o-border-radius: 0px 20px 20px 0px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.193);
+}
+
+/* Estilo para el footer */
+
+.footerInicio {
+    height: 80vh;
+    background-color: rgb(55, 86, 111);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    color: whitesmoke;
+}
+
+.logoFooter {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.logoFooter h1 {
+    font-family: "Newsreader", serif;
+    font-size: 50px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+
+.redesSociales {
+    margin-top: 110px;
+    margin-bottom: 20px;
+}
+
+.enlacesFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.enlacesFooter p {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: x-small;
+    margin-top: 20px;
+    font-weight: lighter;
+}
+
+.derechaFooter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+
+.contenedorDerechaFooter {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    padding: 50px;
+}
+
+.primeraColumnaFooter h3, .segundaColumnaFooter h3, .terceraColumnaFooter h3 {
+    font-family: "Newsreader", serif;
+    font-size: 20px;
+}
+
+.primeraColumnaFooter p, .segundaColumnaFooter p, .terceraColumnaFooter p {
+    font-family: "Newsreader", serif;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.copyRigthFooter {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.copyRigthFooter p {
+    font-size: x-small;
+    font-weight: lighter;
+}
+
+.copyRigthFooter a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-family: "Newsreader", serif;
+}
+
+/* Menú hamburguesa */
+.menu-hamburguesa {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.menu-hamburguesa .bar {
+    width: 100%;
+    height: 5px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+    .centroCabecera .menu {
+        display: none;
+    }
+
+    .menu-hamburguesa {
+        display: flex;
+    }
+
+    .menu-desplegable {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        margin-top: 20px;
+        left: 50px;
+        background-color: #55555559;
+        padding: 20px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+}
+    
+    .menu-desplegable ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-desplegable li {
+        margin-top: 20px !important;
+    }
+    
+    .menu-desplegable a {
+        padding: 10px;
+        color: whitesmoke;
+        text-decoration: none;
+    }
+    
+    .menu-desplegable a:hover {
+        background-color: #555;
+    }
+
+    .menu-desplegable.active {
+        display: flex;
+    }
+
+    .segundaParteInicio h3 {
+        font-size: 40px !important;
+    }
+
+    .segundaParteInicio p {
+        width: 100%;
+        font-size: 20px !important;
+    }
+
+    .autores {
+        width: 100%;
+    }
+
+    .autores h4 {
+        font-size: 10px !important;
+        margin-top: -50px;
+    }
+
+    .destinosInicio h1 {
+        font-size: 40px;
+    }
+
+    /* modificar las postales de destinos */
+
+    footer {
+        flex-direction: column;
+    }
+
+    .logoFooter {
+        width: 100%;
+    }
+
+    .redesSociales {
+        margin-top: 10px;
+    }
+
+    .derechaFooter {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .contenedorDerechaFooter {
+        width: 100%;
+    }
+
+    .copyRigthFooter {
+        width: 100%;
+    }
+}
