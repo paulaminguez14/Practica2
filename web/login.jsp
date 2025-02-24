@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Inicio de Sesión</title>
-        <link rel="stylesheet" type="text/css" href="./estilos/estiloLogin.css">
+        <link rel="stylesheet" type="text/css" href="../estilos/estiloLogin.css">
         <link href="https://fonts.googleapis.com/css2?family=Switzer:wght@400;700&display=swap" rel="stylesheet">
     </head>
     <body>
@@ -23,10 +23,10 @@
             <div class="centroCabecera">
                 <nav class="menu-desplegable">
                     <ul>
-                        <li style="margin-top: -5px;"><a href="inicio.jsp"><img src="./svg/home_24dp_WHITE_FILL0_wght400_GRAD0_opsz24.svg" alt="home"></a></li>
+                        <li style="margin-top: -5px;"><a href="ControladorInicio"><img src="../svg/home_24dp_WHITE_FILL0_wght400_GRAD0_opsz24.svg" alt="home"></a></li>
                         <li><a href="destinos.html">Destinos</a></li>
                         <li><a href="contacto.html">Contacto</a></li>
-                        <li style="margin-top: -4px;"><a href="login.jsp"><img src="./svg/person_24dp_WHITE_FILL0_wght400_GRAD0_opsz24.svg" alt="usuario"></a></li>
+                        <li style="margin-top: -4px;"><a href="ControladorLogin"><img src="../svg/person_24dp_WHITE_FILL0_wght400_GRAD0_opsz24.svg" alt="usuario"></a></li>
                     </ul>
                 </nav>
 
@@ -40,7 +40,7 @@
 
             <div class="derechaCabecera">
                 <input type="text" placeholder="Buscar">
-                <a href=""><img src="./svg/search_24dp_WHITE_FILL0_wght400_GRAD0_opsz24.svg" alt="lupa"></a>
+                <a href=""><img src="../svg/search_24dp_WHITE_FILL0_wght400_GRAD0_opsz24.svg" alt="lupa"></a>
             </div>
         </header>
         <main>

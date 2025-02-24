@@ -185,4 +185,14 @@ public class ServicioUsuario implements Serializable {
         }
     }
     
+    public Usuario validarUsuario (String email, String password){
+        List <Usuario> usuarios = findUsuarioEntities();
+        for (Usuario u : usuarios){
+            if (u.getEmail().equals(email) && u.getPassword().equals(password)){
+                return u;
+            }
+        }
+        return null;
+    }
+    
 }
