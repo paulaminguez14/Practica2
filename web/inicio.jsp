@@ -24,7 +24,7 @@
                 <nav class="menu-desplegable">
                     <ul>
                         <li style="margin-top: -5px;"><a href="ControladorInicio"><img src="../svg/home_24dp_WHITE_FILL0_wght400_GRAD0_opsz24.svg" alt="home"></a></li>
-                        <li><a href="destinos.html">Destinos</a></li>
+                        <li><a href="ControladorExperienciaViaje">Experiencias</a></li>
                         <li><a href="contacto.html">Contacto</a></li>
                         <li style="margin-top: -4px;"><a href="ControladorLogin"><img src="../svg/person_24dp_WHITE_FILL0_wght400_GRAD0_opsz24.svg" alt="usuario"></a></li>
                     </ul>

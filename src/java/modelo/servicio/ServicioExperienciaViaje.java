@@ -5,11 +5,15 @@ package modelo.servicio;
 
 import java.io.Serializable;
 import java.util.List;
+import static java.util.random.RandomGeneratorFactory.all;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import modelo.entidades.ExperienciaViaje;
 import modelo.entidades.Usuario;
@@ -120,11 +124,39 @@ public class ServicioExperienciaViaje implements Serializable {
     public List<ExperienciaViaje> findExperienciaViajeEntities() {
         return findExperienciaViajeEntities(true, -1, -1);
     }
-
+    
     public List<ExperienciaViaje> findExperienciaViajeEntities(int maxResults, int firstResult) {
         return findExperienciaViajeEntities(false, maxResults, firstResult);
     }
+    
+    public List<ExperienciaViaje> findExperienciaPorIdUsuario(Long idUsuario) {
+    EntityManager em = getEntityManager();
+    try {
+        // Obtiene CriteriaBuilder para construir las consultas
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        
+        // Crea un CriteriaQuery para la entidad ExperienciaViaje
+        CriteriaQuery<ExperienciaViaje> cq = cb.createQuery(ExperienciaViaje.class);
+        
+        // Define la raíz de la consulta (la entidad ExperienciaViaje)
+        Root<ExperienciaViaje> root = cq.from(ExperienciaViaje.class);
+        
+        // Establece la condición para filtrar por idUsuario
+        Predicate predicate = cb.equal(root.get("usuario").get("id"), idUsuario);
+        cq.where(predicate);
+        
+        // Crea la consulta de la entidad con los parámetros de CriteriaQuery
+        TypedQuery<ExperienciaViaje> query = em.createQuery(cq);
+                
+        // Ejecuta la consulta y devuelve el resultado
+        return query.getResultList();
+    } finally {
+        em.close();
+    }
+}
 
+
+    
     private List<ExperienciaViaje> findExperienciaViajeEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
