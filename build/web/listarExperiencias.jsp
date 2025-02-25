@@ -5,6 +5,7 @@
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@
     </head>
     <body>
         <h1>Experiencias de Viaje</h1>
-        <table>
+        <table border="2px">
             <tr>
                 <th>Titulo</th>
                 <th>Descripcion</th>
@@ -25,9 +26,19 @@
                 <tr>
                     <td>${experiencia.titulo}</td>
                     <td>${experiencia.descripcion}</td>
-                    <td>${experiencia.fechaInicio}</td>
+                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${experiencia.fechaInicio}"/></td>
                     <td>${experiencia.publicada ? "Si" : "No"}</td>
-                    <td><a href="ControladorDepartamento?id=${departamento.id}">Editar</a></td>
+                    <td>
+                        <a href="ControladorExperienciaViaje?id=${experiencia.id}">Editar</a>
+
+                        <form action="ControladorExperienciaViaje" method="POST">
+                            <input type="hidden" name="id" value="${experiencia.id}">
+                            <input type="submit" name="eliminar" value="Eliminar" 
+                                   onclick="return confirm('¿Estás seguro de que deseas eliminar la experiencia ${experiencia.id}?')">
+                        </form>
+
+                    </td>
+
                 </tr>
             </c:forEach>
         </table>

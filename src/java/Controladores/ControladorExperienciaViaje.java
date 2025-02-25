@@ -17,8 +17,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.entidades.Actividad;
 import modelo.entidades.ExperienciaViaje;
 import modelo.entidades.Usuario;
+import modelo.servicio.ServicioActividad;
 import modelo.servicio.ServicioExperienciaViaje;
 import modelo.servicio.exceptions.NonexistentEntityException;
 
@@ -48,22 +50,39 @@ public class ControladorExperienciaViaje extends HttpServlet {
         if (request.getParameter("id") == null && request.getParameter("crear") == null) {//Mostrara las experiencias del usuario que se le pasa parametro
             HttpSession sesion = request.getSession();
             Usuario usuario = (Usuario) sesion.getAttribute("usuario");
-            long id = usuario.getId();
-            List<ExperienciaViaje> experiencias = sexp.findExperienciaPorIdUsuario(id);
-            request.setAttribute("idUsuario", id);
+            long idUsuario = usuario.getId();
+            List<ExperienciaViaje> experiencias = sexp.findExperienciaPorIdUsuario(idUsuario);
+            request.setAttribute("idUsuario", idUsuario);
             request.setAttribute("experiencias", experiencias);
         } else if (request.getParameter("crear") != null) { // Crear Experiencia
             vista = "/crearExperiencia.jsp";
+            HttpSession sesion = request.getSession();
+            Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+            long idUsuario = usuario.getId();
+            ServicioActividad sa = new ServicioActividad(emf);
+            List<Actividad> actividades = sa.findActividadEntities();
+            request.setAttribute("actividades", actividades);
+            request.setAttribute("idUsuario", idUsuario);
+
         } else if (request.getParameter("id") != null) { // Editar Experiencia
             try {
+                HttpSession sesion = request.getSession();
+                Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+                long idUsuario = usuario.getId();
+                ServicioActividad sa = new ServicioActividad(emf);
+                List<Actividad> actividades = sa.findActividadEntities();
+                request.setAttribute("actividades", actividades);
+                request.setAttribute("idUsuario", idUsuario);
                 long id = Long.parseLong(request.getParameter("id"));
                 ExperienciaViaje experiencia = sexp.findExperienciaViaje(id);
                 request.setAttribute("id", id);
                 request.setAttribute("titulo", experiencia.getTitulo());
                 request.setAttribute("descripcion", experiencia.getDescripcion());
-                request.setAttribute("fechaInicio", experiencia.getFechaInicio());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String fechaFormateada = (experiencia.getFechaInicio() != null) ? sdf.format(experiencia.getFechaInicio()) : "";
+                request.setAttribute("fechaInicio", fechaFormateada);
                 request.setAttribute("publicada", experiencia.isPublicada());
-                vista = "/editarExperiencia.jsp";
+                vista = "/crearExperiencia.jsp";
             } catch (Exception e) {
             }
         }
@@ -87,24 +106,36 @@ public class ControladorExperienciaViaje extends HttpServlet {
         String descripcion = request.getParameter("descripcion");
         String fechaInicioStr = request.getParameter("fechaInicio");
         String publicada = request.getParameter("publicada");
+
+        // Parseamos cuando sea distinto de null (editar o eliminar)
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechaInicio = new Date();
-                try {
-                    fechaInicio = sdf.parse(fechaInicioStr);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+        Date fechaInicio = null;
+        if (fechaInicioStr != null && !fechaInicioStr.isEmpty()) {
+            try {
+                fechaInicio = sdf.parse(fechaInicioStr);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
         String vista = "";
         String error = "";
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Practica2PU");
         ServicioExperienciaViaje sexp = new ServicioExperienciaViaje(emf);
+
         if (request.getParameter("crear") != null) { // Crear
             try {
+                Long idUsuario = Long.parseLong(request.getParameter("idUsuario"));
+                HttpSession sesion = request.getSession();
+                Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+
                 ExperienciaViaje experiencia = new ExperienciaViaje();
                 experiencia.setDescripcion(descripcion);
                 experiencia.setFechaInicio(fechaInicio);
                 experiencia.setTitulo(titulo);
                 experiencia.setPublicada(false);
+                experiencia.setUsuario(usuario);
+
                 sexp.create(experiencia);
             } catch (Exception e) {
                 error = "Error al crear la experiencia " + titulo;
@@ -123,34 +154,39 @@ public class ControladorExperienciaViaje extends HttpServlet {
                 experiencia.setTitulo(titulo);
                 experiencia.setDescripcion(descripcion);
                 experiencia.setFechaInicio(fechaInicio);
-                experiencia.setPublicada(Boolean.parseBoolean(publicada));
+                experiencia.setPublicada("1".equals(publicada));
                 sexp.edit(experiencia);
             } catch (Exception e) {
-                error = "Error a editar la experiencia " + titulo;
-                vista = "/editarExperiencia.jsp";
+                error = "Error al editar la experiencia " + titulo;
+                vista = "/crearExperiencia.jsp";
                 request.setAttribute("titulo", titulo);
                 request.setAttribute("descripcion", descripcion);
                 request.setAttribute("fechaInicio", fechaInicioStr);
                 request.setAttribute("publicada", publicada);
                 request.setAttribute("error", error);
             }
-        } else if (request.getParameter("eliminar") != null) {  // Eliminar
+        } else if (request.getParameter("eliminar") != null) { // Eliminar
+            long id = Long.parseLong(request.getParameter("id"));
             try {
-                long id = Long.parseLong(request.getParameter("id"));
-                sexp.destroy(id);
+                sexp.destroy(id);  // Solo necesitamos el id para eliminar
             } catch (NonexistentEntityException e) {
-                error = "La exeriencia " + titulo + " ya no existe";
+                error = "La experiencia con ID " + id + " ya no existe";
             } catch (Exception e) {
-                error = "No se puede eliminar la experiencia" + titulo;
+                error = "No se puede eliminar la experiencia con ID " + id;
             }
+
             if (!error.isEmpty()) {
-                vista = "/admin/editarDepartamento.jsp";
+                vista = "/listarExperiencias.jsp";
+            } else {
+                response.sendRedirect("ControladorExperienciaViaje");  // Volver al listado de experiencias
+                return;
             }
         }
+
         emf.close();
         // Si se ha realizado la acción con éxito, volvemos al listado
         if (error.isEmpty()) {
-            response.sendRedirect("ControladorDepartamento");
+            response.sendRedirect("ControladorExperienciaViaje");
             return;
         }
         getServletContext().getRequestDispatcher(vista).forward(request, response);
