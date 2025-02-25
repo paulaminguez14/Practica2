@@ -14,40 +14,23 @@
         <title>ExperienciaViaje</title>
     </head>
     <body>
-        <h1>Experiencias de Viaje</h1>
+        <h1>Experiencias de Viaje de todos los Usuarios</h1>
         <table border="2px">
             <tr>
                 <th>Titulo</th>
                 <th>Descripcion</th>
                 <th>Fecha</th>
-                <th>Publicada</th>
+                <th>Usuario</th>
             </tr>
             <c:forEach var="experiencia" items="${experiencias}">
                 <tr>
                     <td>${experiencia.titulo}</td>
                     <td>${experiencia.descripcion}</td>
                     <td><fmt:formatDate pattern="dd/MM/yyyy" value="${experiencia.fechaInicio}"/></td>
-                    <td>${experiencia.publicada ? "Si" : "No"}</td>
-                    <td>
-                        <a href="ControladorExperienciaViaje?id=${experiencia.id}">Editar</a>
-
-                        <form action="ControladorExperienciaViaje" method="POST">
-                            <input type="hidden" name="id" value="${experiencia.id}">
-                            <input type="submit" name="eliminar" value="Eliminar" 
-                                   onclick="return confirm('¿Estás seguro de que deseas eliminar la experiencia ${experiencia.id}?')">
-                        </form>
-
-                    </td>
-
+                    <td>${experiencia.usuario.nombre}</td>
                 </tr>
             </c:forEach>
         </table>
-        <br>
-        <form>
-            <input type="submit" name="crear" value="Crear Experiencia">
-        </form>
-        <br>
-        <a href="/Practica2/Controladores/ControladorListadoExperiencia">Ver Experiencias de otros usuarios</a>
         <br><br>
         <a href="/Practica2/Controladores/ControladorInicio">Volver</a>
     </body>

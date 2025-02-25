@@ -1,7 +1,7 @@
 <%-- 
     Document   : listarExperiencias.jsp
     Created on : 24 feb 2025, 19:10:30
-    Author     : juan-antonio
+    Author     : juan-antonio y Paula
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -47,6 +47,8 @@
             <input type="submit" name="crear" value="Crear Experiencia">
         </form>
         <br>
+        <a href="/Practica2/Controladores/ControladorListadoExperiencia">Ver Experiencias de otros usuarios</a>
+        <br><br>
         <a href="/Practica2/Controladores/ControladorInicio">Volver</a>
     </body>
 </html>
