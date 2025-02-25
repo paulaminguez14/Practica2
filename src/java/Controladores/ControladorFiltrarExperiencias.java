@@ -1,9 +1,11 @@
 /*
- * ControladorListarExperiencia
+ * ControladoresFiltrarExperiecias
  */
 package Controladores;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,8 +23,8 @@ import modelo.servicio.ServicioUsuario;
  *
  * @author juan-antonio
  */
-@WebServlet(name = "ControladorListadoExperiencia", urlPatterns = {"/Controladores/ControladorListadoExperiencia"})
-public class ControladorListadoExperiencia extends HttpServlet {
+@WebServlet(name = "ControladorFiltrarExperiencias", urlPatterns = {"/Controladores/ControladorFiltrarExperiencias"})
+public class ControladorFiltrarExperiencias extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,9 +37,29 @@ public class ControladorListadoExperiencia extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+
+        String filtro = request.getParameter("filtro");
+        if (filtro == null) {
+            filtro = "";
+        }
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Practica2PU");
+        ServicioExperienciaViaje sexp = new ServicioExperienciaViaje(emf);
+        List<ExperienciaViaje> experiencias = sexp.findExperienciasPublicadas();
+        emf.close();
+        filtro = filtro.toLowerCase().trim();
+        List<ExperienciaViaje> filtrados = new ArrayList();
+        for (ExperienciaViaje e : experiencias) {
+            if (e.getTitulo().toLowerCase().contains(filtro) ||
+                e.getDescripcion().toLowerCase().contains(filtro)) {
+                filtrados.add(e);
+            }
+        }
+        request.setAttribute("experiencias", filtrados);
         getServletContext().getRequestDispatcher("/listarTodasLasExperiencias.jsp").forward(request, response);
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -46,7 +68,7 @@ public class ControladorListadoExperiencia extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */    
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -78,3 +100,8 @@ public class ControladorListadoExperiencia extends HttpServlet {
     }// </editor-fold>
 
 }
+
+
+
+
+
