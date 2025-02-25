@@ -23,5 +23,4 @@
             <td>${experiencia.usuario.nombre}</td>
         </tr>
     </c:forEach>
-    <a href="/Practica2/Controladores/ControladorExperienciaViaje">Volver</a>
 </table>
