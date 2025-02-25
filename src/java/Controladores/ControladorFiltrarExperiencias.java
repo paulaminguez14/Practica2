@@ -52,7 +52,8 @@ public class ControladorFiltrarExperiencias extends HttpServlet {
         List<ExperienciaViaje> filtrados = new ArrayList();
         for (ExperienciaViaje e : experiencias) {
             if (e.getTitulo().toLowerCase().contains(filtro) ||
-                e.getDescripcion().toLowerCase().contains(filtro)) {
+                e.getDescripcion().toLowerCase().contains(filtro) ||
+                e.getUsuario().getNombre().toLowerCase().contains(filtro)) {
                 filtrados.add(e);
             }
         }
