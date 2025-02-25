@@ -57,7 +57,7 @@ public class ControladorFiltrarExperiencias extends HttpServlet {
             }
         }
         request.setAttribute("experiencias", filtrados);
-        getServletContext().getRequestDispatcher("/listarTodasLasExperiencias.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/filtrarExperienciaViaje.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

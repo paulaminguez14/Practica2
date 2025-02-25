@@ -25,6 +25,6 @@
             
         </div><br><br>
         
-        <a href="../empleados/ControladorExperienciaViaje">Volver</a>
+        <a href="../Controladores/ControladorExperienciaViaje">Volver</a>
     </body>
 </html>
