@@ -14,6 +14,7 @@
         <th>Descripcion</th>
         <th>Fecha</th>
         <th>Usuario</th>
+        <th>Acciones</th>
     </tr>
     <c:forEach var="experiencia" items="${experiencias}">
         <tr>
@@ -21,6 +22,7 @@
             <td>${experiencia.descripcion}</td>
             <td><fmt:formatDate pattern="dd/MM/yyyy" value="${experiencia.fechaInicio}"/></td>
             <td>${experiencia.usuario.nombre}</td>
+            <td><a href="Controladores.Actividades/ControladorActividades?id=${experiencia.id}">Ver Actividades</a></td>
         </tr>
     </c:forEach>
 </table>

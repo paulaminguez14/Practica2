@@ -9,9 +9,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import modelo.entidades.Actividad;
+import modelo.entidades.ExperienciaViaje;
 import modelo.servicio.exceptions.NonexistentEntityException;
 
 /**
@@ -111,6 +116,33 @@ public class ServicioActividad implements Serializable {
         }
     }
 
+    public List<Actividad> findActividadPorIdExperiencia(Long idExperiencia) {
+        EntityManager em = getEntityManager();
+        try {
+            // Obtiene CriteriaBuilder para construir las consultas
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+
+            // Crea un CriteriaQuery para la entidad Actividad
+            CriteriaQuery<Actividad> cq = cb.createQuery(Actividad.class);
+
+            // Define la raíz de la consulta (la entidad Actividad)
+            Root<Actividad> root = cq.from(Actividad.class);
+
+            // Establece la condición para filtrar por idExperiencia en la relación con ExperienciaViaje
+            Join<Actividad, ExperienciaViaje> join = root.join("experiencia"); 
+            Predicate predicate = cb.equal(join.get("id"), idExperiencia);
+            cq.where(predicate);
+
+            // Crea la consulta de la entidad con los parámetros de CriteriaQuery
+            TypedQuery<Actividad> query = em.createQuery(cq);
+
+            // Ejecuta la consulta y devuelve el resultado
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
     public Actividad findActividad(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -132,5 +164,5 @@ public class ServicioActividad implements Serializable {
             em.close();
         }
     }
-    
+
 }

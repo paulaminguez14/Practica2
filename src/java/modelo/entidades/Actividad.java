@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,6 +36,10 @@ public class Actividad implements Serializable, Comparable<Actividad> {
     @Temporal(TemporalType.DATE)
     private Date fecha;
     private List<String> imagenes;
+    //Lo hemos añadido puesto que no existe ninguna relacion creada entre experiencia y actividad
+    @ManyToOne
+    @JoinColumn(name = "EXPERIENCIA_ID", nullable = false)
+    private ExperienciaViaje experiencia;
     
     public Actividad() {
         imagenes = new ArrayList();
@@ -77,6 +83,14 @@ public class Actividad implements Serializable, Comparable<Actividad> {
 
     public void setImagenes(List<String> imagenes) {
         this.imagenes = imagenes;
+    }
+    
+    public ExperienciaViaje getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(ExperienciaViaje experiencia) {
+        this.experiencia = experiencia;
     }
     
     @Override

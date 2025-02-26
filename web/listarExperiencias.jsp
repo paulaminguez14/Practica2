@@ -21,6 +21,7 @@
                 <th>Descripcion</th>
                 <th>Fecha</th>
                 <th>Publicada</th>
+                <th>Acciones</th>
             </tr>
             <c:forEach var="experiencia" items="${experiencias}">
                 <tr>
@@ -36,6 +37,13 @@
                             <input type="submit" name="eliminar" value="Eliminar" 
                                    onclick="return confirm('¿Estás seguro de que deseas eliminar la experiencia ${experiencia.id}?')">
                         </form>
+                        <form action="../Controladores.Actividades/ControladorActividades" method="GET">
+                            <input type="hidden" name="listar" value="true">
+                            <input type="hidden" name="idExperiencia" value="${experiencia.id}">
+                            <input type="submit" value="Ver Actividad">
+                        </form>
+
+
 
                     </td>
 
