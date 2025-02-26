@@ -16,10 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.entidades.Actividad;
 import modelo.entidades.ExperienciaViaje;
 import modelo.entidades.Usuario;
-import modelo.servicio.ServicioActividad;
 import modelo.servicio.ServicioExperienciaViaje;
 import modelo.servicio.exceptions.NonexistentEntityException;
 
@@ -58,9 +56,6 @@ public class ControladorExperienciaViaje extends HttpServlet {
             HttpSession sesion = request.getSession();
             Usuario usuario = (Usuario) sesion.getAttribute("usuario");
             long idUsuario = usuario.getId();
-            ServicioActividad sa = new ServicioActividad(emf);
-            List<Actividad> actividades = sa.findActividadEntities();
-            request.setAttribute("actividades", actividades);
             request.setAttribute("idUsuario", idUsuario);
 
         } else if (request.getParameter("id") != null) { // Editar Experiencia
@@ -68,9 +63,6 @@ public class ControladorExperienciaViaje extends HttpServlet {
                 HttpSession sesion = request.getSession();
                 Usuario usuario = (Usuario) sesion.getAttribute("usuario");
                 long idUsuario = usuario.getId();
-                ServicioActividad sa = new ServicioActividad(emf);
-                List<Actividad> actividades = sa.findActividadEntities();
-                request.setAttribute("actividades", actividades);
                 request.setAttribute("idUsuario", idUsuario);
                 long id = Long.parseLong(request.getParameter("id"));
                 ExperienciaViaje experiencia = sexp.findExperienciaViaje(id);

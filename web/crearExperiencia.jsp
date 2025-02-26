@@ -29,15 +29,6 @@
         <label>Publicada (Si:1 No:0)</label>
         <input type="number" name="publicada" min="0" max="1" value="${publicada != null ? (publicada ? '1' : '0') : '0'}" required>
         <br>
-        <label>Actividades</label>
-        <select name="actividades" multiple>
-            <c:forEach var="actividad" items="${actividades}">
-                <option value="${actividad.id}" ${selectedActividades.contains(act.id) ? "selected" : ""}>
-                    <c:out value="${actividad.titulo}"/>
-                </option>
-            </c:forEach>
-        </select>
-        <br>
         <input type="submit" name="${empty id?'crear':'editar'}" value="Aceptar">
     </form>
     <br>
