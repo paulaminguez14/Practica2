@@ -22,7 +22,13 @@
             <td>${experiencia.descripcion}</td>
             <td><fmt:formatDate pattern="dd/MM/yyyy" value="${experiencia.fechaInicio}"/></td>
             <td>${experiencia.usuario.nombre}</td>
-            <td><a href="Controladores.Actividades/ControladorActividades?id=${experiencia.id}">Ver Actividades</a></td>
+            <td>
+                <form action="../Controladores.Actividades/ControladorActividades" method="GET">
+                    <input type="hidden" name="listar" value="true">
+                    <input type="hidden" name="idExperiencia" value="${experiencia.id}">
+                    <input type="submit" value="Ver Actividad">
+                </form>
+            </td>
         </tr>
     </c:forEach>
 </table>
